@@ -69,7 +69,12 @@ export type InstagramPost = {
  * Örnek:
  * { permalink: "https://www.instagram.com/p/XXXXXXXX/", image: "/instagram/01.jpg", alt: "..." }
  */
-export const instagramPosts: InstagramPost[] = [];
+export const instagramPosts: InstagramPost[] = [  
+  {
+    permalink: "https://www.instagram.com/reel/DYmfUQssdVg/?utm_source=ig_web_copy_link&dlrf=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+    image: "/instagram/egzozgazi.jpg", // isteğe bağlı: public/instagram/ altına koyduğunuz kendi görseliniz
+    alt: "Farklı servislerde çözülemeyen sorun giderilmesi",
+  },];
 
 /* ------------------------------------------------------------------ */
 /* Hero görseli                                                        */
