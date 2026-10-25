@@ -1,14 +1,8 @@
-/**
- * AMG Garaj — tek noktadan düzenlenebilir site yapılandırması.
- * Telefonlar, sosyal bağlantılar, Instagram galerisi ve hero görseli buradan güncellenir.
- */
-
 export const business = {
   name: "AMG Garaj",
   city: "Düzce",
   country: "TR",
   phones: [
-    // Sıra önemlidir: ilk kişi, sayfadaki "Hemen Ara" ve mobildeki "Ara" butonlarının numarasıdır.
     {
       name: "Akın ÇITLAK",
       title: "Müşteri Danışmanı",
@@ -37,10 +31,6 @@ export const business = {
     url: "https://www.tiktok.com/@amggarage.duzce",
     handle: "@amggarage.duzce",
   },
-  /**
-   * Doğrulanmamış bilgiler bilinçli olarak boş bırakıldı.
-   * Doğruladığınızda doldurun; JSON-LD ve iletişim bölümünde otomatik kullanılabilir.
-   */
   streetAddress: null as string | null,
   openingHours: null as string | null,
 } as const;
@@ -61,79 +51,65 @@ export const seo = {
   ],
 } as const;
 
-/* ------------------------------------------------------------------ */
-/* Müşteri yorumları (elle yönetilir)                                  */
-/* ------------------------------------------------------------------ */
-
 export type CustomerReview = {
-  /** Ad soyad */
   author: string;
-  /** Yorum metni. Paragraflar boş satırla ayrılır; uzun yorumlarda "Devamını oku" çıkar. */
   text: string;
-  /** İsteğe bağlı, ör. "Ekim 2026". Verilmezse gösterilmez. */
   when?: string;
 };
 
-/**
- * Yeni yorum eklemek için listeye bir nesne daha ekleyin. Yalnızca gerçek müşteri
- * yorumlarını, sahibinin onayıyla ekleyin.
- */
 export const customerReviews: CustomerReview[] = [
   {
-    author: "Emre Koyuncu",
-    text: `Aracım Mercedes C180 W204 2012 CGI model. Aracımın hem ön ana aküsünü hem de yedekleme aküsünü değiştirdikten sonra, Start-Stop ve Hold özellikleri çalışmaz oldu. Aküm 80 amperlik AGM akü. Başta sorunun aküden kaynaklandığını düşünüyordum. Bu nedenle Akın Bey ile iletişime geçtim. Aküyü farklı bir yerden almama rağmen, “Gerekirse yeni akü takar, sorunu yine de çözeriz.” dedi.
-
-Ben de aracı alıp gittim. Yalçın Bey de sağ olsun hemen ilgilendi. Önce akü sensörüne baktı, elektrik gelmediğini fark etti. Ardından bagajdaki beyinden şüphelendi. Kontrol sırasında beynin su aldığını ve oksitlenmeye bağlı olarak bir ayağının kırıldığını tespit etti. Sağ olsun, tamir için yedek parça bile temin etti. Bana sadece küçük bir lehim yapmak kaldı ve tüm sorun çözüldü.
-
-Nokta atışıyla sorunu bulan Yalçın Bey’e ve samimi tutumundan dolayı Akın Bey’e teşekkür ederim. Sadece Mercedes araçlara bakan bu ekibin, işini ne kadar profesyonel yaptığını ve sorunu adım adım göstererek nasıl çözüm ürettiklerini görmek gerçekten takdire şayandı. Kendilerine gönülden teşekkür ederim.`,
+    author: "Emre K***",
+    text: `Aracım Mercedes C180 W204 2012 CGI model. Aracımın hem ön ana aküsünü hem de yedekleme aküsünü değiştirdikten sonra, Start-Stop ve Hold özellikleri çalışmaz oldu. Aküm 80 amperlik AGM akü. Başta sorunun aküden kaynaklandığını düşünüyordum. Bu nedenle Akın Bey ile iletişime geçtim. Aküyü farklı bir yerden almama rağmen, “Gerekirse yeni akü takar, sorunu yine de çözeriz.” dedi. en de aracı alıp gittim. Yalçın Bey de sağ olsun hemen ilgilendi. Önce akü sensörüne baktı, elektrik gelmediğini fark etti. Ardından bagajdaki beyinden şüphelendi. Kontrol sırasında beynin su aldığını ve oksitlenmeye bağlı olarak bir ayağının kırıldığını tespit etti. Sağ olsun, tamir için yedek parça bile temin etti. Bana sadece küçük bir lehim yapmak kaldı ve tüm sorun çözüldü. Nokta atışıyla sorunu bulan Yalçın Bey’e ve samimi tutumundan dolayı Akın Bey’e teşekkür ederim. Sadece Mercedes araçlara bakan bu ekibin, işini ne kadar profesyonel yaptığını ve sorunu adım adım göstererek nasıl çözüm ürettiklerini görmek gerçekten takdire şayandı. Kendilerine gönülden teşekkür ederim.`,
   },
+  {
+    author: "Hilal A***",
+    text: `Yolculuğum sırasında Mercedes aracımla ilgili yaşadığım bir sorun nedeniyle yolda kalınca Mercedes-Benz Otomobil Özel Servis AMG Garaj’a gittim. İlk andan itibaren Akın Bey ve Yalçın Bey son derece ilgili, güler yüzlü ve çözüm odaklı yaklaştılar. Aracımla titizlikle ilgilenerek yapılan işlemler hakkında detaylı bilgi verdiler ve sorunun kısa sürede çözülmesini sağladılar. Özellikle şehir dışından gelen biri olarak gösterdikleri ilgi, güven veren yaklaşımları ve profesyonellikleri benim için çok kıymetliydi. Gönül rahatlığıyla aracınızı teslim edebileceğiniz, işini özenle yapan güvenilir bir servis. Akın Bey ve Yalçın Bey’e ilgileri ve emekleri için ayrıca teşekkür ederim. Kesinlikle tavsiye ediyorum.`,
+  },  
+  {
+    author: "Yüksel G***",
+    text: `Bolu’da başka bir serviste iki gün uğraşmamıza rağmen bir sorunu çözmeye çalışırken başka bir sorun ortaya çıktı ve ne yazık ki problemi bulamadılar. Düzce’de ise arkadaşlar aracı kısa sürede, yaklaşık 1,5 saat içerisinde kontrol edip sorunu tespit ederek çözdüler. İlgi, alaka, güler yüz ve işçiliklerinden çok memnun kaldım. Böyle işini bilen ve müşterisine yardımcı olmaya çalışan bir servis görmek gerçekten güven veriyor. Gönül rahatlığıyla tavsiye ederim. Özellikle Akin Bey’e ve tüm ekibe emekleri için çok teşekkür ederim.`,
+  },    
 ];
 
-/* ------------------------------------------------------------------ */
-/* Instagram galerisi                                                  */
-/* ------------------------------------------------------------------ */
-
 export type InstagramPost = {
-  /** Gönderinin kalıcı bağlantısı, ör. https://www.instagram.com/p/XXXXXXXX/ */
   permalink: string;
-  /**
-   * İsteğe bağlı yerel görsel (public/ altında), ör. "/instagram/01.jpg".
-   * Verilirse kare bir kartta gösterilir ve tıklanınca gönderiye gider.
-   * Verilmezse resmî Instagram embed'i, ziyaretçi isteyince yüklenir.
-   */
   image?: string;
-  /** Görselin açıklayıcı alt metni (Türkçe). */
   alt: string;
 };
 
-/**
- * Gerçek gönderilerinizi buraya ekleyin. Boş bırakılırsa Instagram'a yönlendiren
- * önizleme alanı gösterilir; sahte gönderi üretilmez.
- *
- * Örnek:
- * { permalink: "https://www.instagram.com/p/XXXXXXXX/", image: "/instagram/01.jpg", alt: "..." }
- */
 export const instagramPosts: InstagramPost[] = [  
   {
     permalink: "https://www.instagram.com/reel/DYmfUQssdVg/?utm_source=ig_web_copy_link&dlrf=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
-    image: "/instagram/egzozgazi.jpg", // isteğe bağlı: public/instagram/ altına koyduğunuz kendi görseliniz
+    image: "/images/egzozgazi.jpg",
     alt: "Farklı servislerde çözülemeyen sorun giderilmesi",
-  },];
+  },
+  {
+    permalink: "https://www.instagram.com/reel/Dbtf7c3MqEq/?utm_source=ig_web_copy_link&obrf=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+    image: "/images/kacak.jpg",
+    alt: "Hava kaçağı duman testi ile tespiti",
+  },
+  {
+    permalink: "https://www.instagram.com/reel/DZ_9o8ssh-d/?utm_source=ig_web_copy_link&obrf=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+    image: "/images/kronik.jpg",
+    alt: "Kronik sorun giderilmesi",
+  },
+];
 
 /* ------------------------------------------------------------------ */
 /* Hero görseli                                                        */
 /* ------------------------------------------------------------------ */
 
 export type HeroImage = {
-  /** public/ altındaki dosya, ör. "/images/hero.jpg" */
   src: string;
   alt: string;
   width: number;
   height: number;
 };
 
-/**
- * Kendi araç/servis fotoğrafınızı public/images/ altına koyup burada tanımlayın.
- * null ise koyu, özgün bir tipografik/ışık kompozisyonu kullanılır.
- */
-export const heroImage: HeroImage | null = null;
+export const heroImage: HeroImage | null = {
+  src: "/images/mrclogo.png",
+  alt: "AMG Garage Mercedes-Benz özel servis",
+  width: 1920,
+  height: 1080,
+};
