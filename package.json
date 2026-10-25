@@ -2,7 +2,7 @@
   "name": "amg-garage",
   "version": "1.0.0",
   "private": true,
-  "description": "AMG Garage Düzce - Mercedes-Benz özel servis tanıtım sitesi",
+  "description": "AMG Garaj Düzce - Mercedes-Benz özel servis tanıtım sitesi",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

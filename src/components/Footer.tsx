@@ -17,7 +17,7 @@ export default function Footer() {
             href={business.instagram.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="AMG Garage Instagram hesabı (yeni sekmede açılır)"
+            aria-label="AMG Garaj Instagram hesabı (yeni sekmede açılır)"
             className="flex h-12 w-12 items-center justify-center text-white transition-colors hover:bg-graphite hover:text-amg-bright"
           >
             <InstagramIcon className="h-6 w-6" />
@@ -26,7 +26,7 @@ export default function Footer() {
             href={business.tiktok.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="AMG Garage TikTok hesabı (yeni sekmede açılır)"
+            aria-label="AMG Garaj TikTok hesabı (yeni sekmede açılır)"
             className="flex h-12 w-12 items-center justify-center text-white transition-colors hover:bg-graphite hover:text-amg-bright"
           >
             <TikTokIcon className="h-6 w-6" />

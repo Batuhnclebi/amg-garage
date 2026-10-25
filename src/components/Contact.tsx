@@ -16,22 +16,26 @@ export default function Contact() {
           Bize ulaşın
         </h2>
         <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-          AMG Garage Düzce&apos;ye telefonla ulaşabilir veya konumumuzu Google Haritalar&apos;da
+          AMG Garaj Düzce&apos;ye telefonla ulaşabilir veya konumumuzu Google Haritalar&apos;da
           açabilirsiniz.
         </p>
 
         <ul className="mt-10 grid gap-px bg-line sm:grid-cols-3">
-          {business.phones.map((phone, index) => (
+          {business.phones.map((phone) => (
             <li key={phone.tel} className="bg-ink">
               <a
                 href={`tel:${phone.tel}`}
-                className="group flex min-h-24 flex-col justify-center gap-1 bg-carbon p-6 transition-colors hover:bg-graphite"
+                className="group flex h-full min-h-24 flex-col justify-center gap-1 bg-carbon p-6 transition-colors hover:bg-graphite"
               >
-                <span className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-mist">
-                  <PhoneIcon className="h-4 w-4 text-amg-bright" />
-                  Telefon {index + 1}
+                <span className="font-[family-name:var(--font-display)] text-xl font-extrabold uppercase tracking-wide">
+                  {phone.name}
                 </span>
-                <span className="font-[family-name:var(--font-display)] text-2xl font-extrabold tracking-wide sm:text-3xl">
+                <span className="flex items-start gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-mist">
+                  <PhoneIcon className="mt-px h-4 w-4 shrink-0 text-amg-bright" />
+                  {phone.title}
+                </span>
+                <span className="mt-2 text-xl font-bold tracking-wide">
+                  <span className="sr-only">Ara: </span>
                   {phone.display}
                 </span>
               </a>

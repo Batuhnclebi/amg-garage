@@ -8,9 +8,6 @@ import JsonLd from "@/components/JsonLd";
 import MobileActionBar from "@/components/MobileActionBar";
 import ReviewsSection from "@/components/ReviewsSection";
 
-// Google yorumları 24 saatte bir yenilenir (ISR).
-export const revalidate = 86400;
-
 export default function Home() {
   return (
     <>

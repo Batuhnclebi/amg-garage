@@ -52,14 +52,14 @@ export default function Hero() {
           id="hero-baslik"
           className="max-w-4xl font-[family-name:var(--font-display)] font-extrabold uppercase leading-[0.95] tracking-tight"
         >
-          <span className="block text-6xl sm:text-8xl lg:text-9xl">AMG Garage</span>
+          <span className="block text-6xl sm:text-8xl lg:text-9xl">AMG Garaj</span>
           <span className="mt-3 block text-2xl text-zinc-200 sm:text-4xl lg:text-5xl">
-            Düzce&apos;de Mercedes-Benz özel servisi
+            Batı karadeniz&apos;de Mercedes-Benz özel servisi
           </span>
         </h1>
 
         <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-          Mercedes-Benz araçlara özel hizmet veren AMG Garage, Düzce&apos;de aracınıza özenle
+          Mercedes-Benz araçlara özel hizmet veren AMG Garaj, Batı karadeniz&apos;de aracınıza özenle
           yaklaşan bir servis deneyimi sunmayı hedefler. Çalışmalarımızı inceleyin, konumumuzu
           açın veya doğrudan arayın.
         </p>
