@@ -108,7 +108,7 @@ export type HeroImage = {
 };
 
 export const heroImage: HeroImage | null = {
-  src: "/images/mrclogo.png",
+  src: "/images/mrclogo2.jpg",
   alt: "AMG Garage Mercedes-Benz özel servis",
   width: 1920,
   height: 1080,
