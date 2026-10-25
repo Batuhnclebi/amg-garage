@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { business, seo, siteUrl } from "@/config/site";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 export const viewport: Viewport = {
   themeColor: "#09090b",
