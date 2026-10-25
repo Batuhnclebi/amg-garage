@@ -7,7 +7,7 @@ export default function Header() {
         aria-label="Ana gezinme"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
       >
-        <a href="#" aria-label="AMG Garage — sayfanın başı" className="text-white">
+        <a href="#" aria-label="AMG Garaj — sayfanın başı" className="text-white">
           <Logo />
         </a>
         <a

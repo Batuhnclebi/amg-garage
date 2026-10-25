@@ -1,6 +1,6 @@
-# AMG Garage Düzce — Tanıtım Sitesi
+# AMG Garaj Düzce — Tanıtım Sitesi
 
-Düzce'deki Mercedes-Benz özel servisi **AMG Garage** için tek sayfalık, mobil öncelikli tanıtım sitesi.
+Düzce'deki Mercedes-Benz özel servisi **AMG Garaj** için tek sayfalık, mobil öncelikli tanıtım sitesi.
 Teknoloji: Next.js (App Router) · React · TypeScript · Tailwind CSS. Veritabanı, panel veya form yoktur.
 
 > **Durum notu:** Bu proje, npm kayıt sunucusuna erişimin engelli olduğu bir ortamda yazıldı.
@@ -51,17 +51,6 @@ docker build --build-arg NEXT_PUBLIC_SITE_URL=https://www.ornek-alan-adi.com -t 
 docker run --rm -p 3000:3000 amg-garage
 ```
 
-Google yorumlarını Docker'da kullanacaksanız, anahtarlar imaja yazılmasın diye build secret kullanın:
-
-```bash
-docker build --secret id=google_env,src=.env.local -t amg-garage .
-docker run --rm -p 3000:3000 \
-  -e GOOGLE_PLACES_API_KEY=... -e GOOGLE_PLACE_ID=... amg-garage
-```
-
-`.env.local` içindeki değerler derleme sırasında okunur; çalışma anındaki `-e` değişkenleri yorumların
-24 saatte bir yenilenmesini sağlar. Yorumlar kullanılmayacaksa bu adım gerekmez.
-
 **Önemli:** Vercel, Dockerfile'ı kullanmaz. Dockerfile yalnızca kendi sunucunuzda veya başka bir konteyner
 platformunda çalıştırmak içindir. `output: "standalone"` ayarı yalnızca `DOCKER_BUILD=1` iken (Dockerfile içinde) açılır.
 
@@ -70,7 +59,7 @@ platformunda çalıştırmak içindir. `output: "standalone"` ayarı yalnızca `
 ```bash
 git init
 git add .
-git commit -m "AMG Garage sitesi"
+git commit -m "AMG Garaj sitesi"
 git branch -M main
 git remote add origin https://github.com/KULLANICI_ADI/amg-garage.git
 git push -u origin main
@@ -91,13 +80,11 @@ git push -u origin main
 | Değişken | Zorunlu | Açıklama |
 | --- | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Hayır (canlıda önerilir) | Örn. `https://www.ornek-alan-adi.com`. Canonical, Open Graph URL, `sitemap.xml` ve `robots.txt` içindeki sitemap bağlantısı bundan üretilir. |
-| `GOOGLE_PLACES_API_KEY` | Hayır | Google yorumları için sunucu tarafı API anahtarı. |
-| `GOOGLE_PLACE_ID` | Hayır | İşletmenin Google Place ID değeri. |
 
 Değişken eklendikten sonra Vercel'de yeniden dağıtım (redeploy) gerekir.
-Anahtarlar kaynak koda gömülmez; başına `NEXT_PUBLIC_` eklemeyin, yoksa tarayıcıya açılır.
+Gizli anahtar gerektiren bir servis kullanılmaz; sırları asla GitHub'a göndermeyin.
 
-## 8. Instagram ve Google yorumları: nasıl çalışır, neler gerekir
+## 8. Instagram ve müşteri yorumları
 
 ### Instagram
 
@@ -120,38 +107,39 @@ export const instagramPosts: InstagramPost[] = [
 - **`image` verilmezse:** resmî Instagram embed'i kullanılır. Üçüncü taraf script (`instagram.com/embed.js`) yalnızca ziyaretçi "Gönderiyi göster" düğmesine basınca yüklenir; sayfa hızı ve gizlilik korunur. Bu yöntem API anahtarı gerektirmez.
 - **Otomatik çekme:** Instagram Basic Display API kullanımdan kaldırıldı. Otomatik akış için Instagram'ın güncel API'si (profesyonel hesap, Meta uygulaması ve izin/inceleme süreci) veya ücretli bir üçüncü taraf servis gerekir; bu projeye bilerek eklenmedi. Güncel koşulları Meta'nın geliştirici dokümanlarından kontrol edin.
 
-### Google yorumları
+### Müşteri yorumları
 
-Yorumlar yalnızca resmî **Places API (New)** ile gösterilir; Google sayfaları kazınmaz.
-Değişkenler tanımlı değilse bölüm, sahte kart üretmeden Google Haritalar'a yönlendiren bir panel gösterir.
+Yorumlar elle yönetilir; API, anahtar veya ücret gerekmez. `src/config/site.ts` içindeki `customerReviews` listesine yeni bir nesne ekleyin:
 
-Etkinleştirmek için:
+```ts
+{
+  author: "Ad Soyad",
+  text: `Yorum metni. Paragraflar boş satırla ayrılır.`,
+  when: "Ekim 2026", // isteğe bağlı
+},
+```
 
-1. Google Cloud'da proje oluşturup **faturalandırmayı** açın ve **Places API (New)**'yi etkinleştirin.
-2. Bir API anahtarı oluşturun ve **API kısıtlaması** olarak yalnızca Places API (New)'yi seçin. Anahtar sunucuda kullanıldığı için HTTP referrer kısıtı uygulanmaz; kısıtı API düzeyinde yapın ve kota/bütçe uyarısı tanımlayın.
-3. İşletmenizin **Place ID** değerini Google'ın Place ID Finder aracıyla bulun. (Kısa `maps.app.goo.gl` bağlantısı Place ID içermez; bu ortamda çözümleyemedim.)
-4. İki değeri `GOOGLE_PLACES_API_KEY` ve `GOOGLE_PLACE_ID` olarak tanımlayın.
-
-Bilmeniz gerekenler: Places API en fazla 5 yorum döndürür; yorumlar 24 saatte bir yenilenir; puan/yorum alanları ücretli bir
-fiyatlandırma katmanına girer (güncel fiyatı Google Cloud'dan kontrol edin); Google verileri kullanılırken atıf gösterilmelidir
-(sitede "Google'dan alınmıştır" notu vardır). Yapılandırılmış veriye (schema) **aggregateRating/review eklenmez**.
+300 karakteri aşan yorumlar kısaltılmış görünür ve "Devamını oku" düğmesiyle açılır. Bölümdeki
+"Tüm Yorumları Google Haritalar'da Oku" düğmesi `business.mapsUrl` adresini açar. Yalnızca gerçek müşteri
+yorumlarını, sahibinin onayıyla ekleyin. Yapılandırılmış veriye (schema) puan veya yorum eklenmez.
 
 ## 9. Nereden ne güncellenir
 
 Tüm içerik `src/config/site.ts` dosyasındadır:
 
-- Telefon numaraları: `business.phones`
+- Kişiler ve telefonlar (ad, unvan, numara): `business.phones`. İlk kişi, "Hemen Ara" ve mobildeki "Ara" butonlarının numarasıdır.
 - Google Maps bağlantısı: `business.mapsUrl`
 - Instagram / TikTok: `business.instagram`, `business.tiktok`
 - Doğrulanınca adres ve çalışma saatleri: `business.streetAddress`, `business.openingHours` (JSON-LD'ye otomatik girer)
 - SEO başlığı ve açıklaması: `seo`
+- Müşteri yorumları: `customerReviews`
 - Instagram galerisi: `instagramPosts`
 - Hero fotoğrafı: `heroImage` (dosyayı `public/images/` altına koyun; `null` iken özgün, fotoğrafsız bir kompozisyon kullanılır)
 
 Sayfa metinleri `src/components/` altındadır (`Hero.tsx`, `About.tsx` …). Hakkımızda ve hero metinleri bilinçli olarak genel
 tutuldu; deneyim yılı, yetki, sertifika veya hizmet listesi içermez. Doğruladığınız bilgileri siz ekleyin.
 
-Yazı tipleri sistem yazı tipleridir (harici font yüklenmez). Marka logosu, "AMG Garage" yazısına dayalı özgün bir tipografik
+Yazı tipleri sistem yazı tipleridir (harici font yüklenmez). Marka logosu, "AMG Garaj" yazısına dayalı özgün bir tipografik
 işarettir (`Logo.tsx`, `src/app/icon.svg`); Mercedes-Benz/AMG logoları kullanılmaz.
 
 ## 10. Alan adı belli olunca yapılacak SEO işleri

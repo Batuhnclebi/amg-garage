@@ -1,16 +1,32 @@
 /**
- * AMG Garage — tek noktadan düzenlenebilir site yapılandırması.
+ * AMG Garaj — tek noktadan düzenlenebilir site yapılandırması.
  * Telefonlar, sosyal bağlantılar, Instagram galerisi ve hero görseli buradan güncellenir.
  */
 
 export const business = {
-  name: "AMG Garage",
+  name: "AMG Garaj",
   city: "Düzce",
   country: "TR",
   phones: [
-    { display: "+90 505 650 33 35", tel: "+905056503335" },
-    { display: "+90 552 739 58 81", tel: "+905527395881" },
-    { display: "+90 534 055 52 81", tel: "+905340555281" },
+    // Sıra önemlidir: ilk kişi, sayfadaki "Hemen Ara" ve mobildeki "Ara" butonlarının numarasıdır.
+    {
+      name: "Akın ÇITLAK",
+      title: "Müşteri Danışmanı",
+      display: "+90 534 055 5281",
+      tel: "+905340555281",
+    },
+    {
+      name: "Atilla ÇEVİK",
+      title: "Mekaniker Teknisyen",
+      display: "+90 505 650 3335",
+      tel: "+905056503335",
+    },
+    {
+      name: "Yalçın KARACA",
+      title: "Elektrik Arıza Teşhis Teknisyeni",
+      display: "+90 552 739 5881",
+      tel: "+905527395881",
+    },
   ],
   mapsUrl: "https://maps.app.goo.gl/pAHKJj33vyUEbHRY6",
   instagram: {
@@ -34,16 +50,44 @@ export const siteUrl: string | null =
   process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "") || null;
 
 export const seo = {
-  title: "AMG Garage Düzce | Mercedes-Benz Özel Servis",
+  title: "AMG Garaj Düzce | Mercedes-Benz Özel Servis",
   description:
-    "Düzce'de Mercedes-Benz araçlara özel hizmet veren AMG Garage. Çalışmaları Instagram'da inceleyin, konumu Google Haritalar'da açın ve hemen arayın.",
+    "Düzce'de Mercedes-Benz araçlara özel hizmet veren AMG Garaj. Çalışmaları Instagram'da inceleyin, konumu Google Haritalar'da açın ve hemen arayın.",
   keywords: [
     "Düzce Mercedes özel servis",
     "Düzce Mercedes-Benz servisi",
-    "AMG Garage Düzce",
+    "AMG Garaj Düzce",
     "Düzce Mercedes bakım servisi",
   ],
 } as const;
+
+/* ------------------------------------------------------------------ */
+/* Müşteri yorumları (elle yönetilir)                                  */
+/* ------------------------------------------------------------------ */
+
+export type CustomerReview = {
+  /** Ad soyad */
+  author: string;
+  /** Yorum metni. Paragraflar boş satırla ayrılır; uzun yorumlarda "Devamını oku" çıkar. */
+  text: string;
+  /** İsteğe bağlı, ör. "Ekim 2026". Verilmezse gösterilmez. */
+  when?: string;
+};
+
+/**
+ * Yeni yorum eklemek için listeye bir nesne daha ekleyin. Yalnızca gerçek müşteri
+ * yorumlarını, sahibinin onayıyla ekleyin.
+ */
+export const customerReviews: CustomerReview[] = [
+  {
+    author: "Emre Koyuncu",
+    text: `Aracım Mercedes C180 W204 2012 CGI model. Aracımın hem ön ana aküsünü hem de yedekleme aküsünü değiştirdikten sonra, Start-Stop ve Hold özellikleri çalışmaz oldu. Aküm 80 amperlik AGM akü. Başta sorunun aküden kaynaklandığını düşünüyordum. Bu nedenle Akın Bey ile iletişime geçtim. Aküyü farklı bir yerden almama rağmen, “Gerekirse yeni akü takar, sorunu yine de çözeriz.” dedi.
+
+Ben de aracı alıp gittim. Yalçın Bey de sağ olsun hemen ilgilendi. Önce akü sensörüne baktı, elektrik gelmediğini fark etti. Ardından bagajdaki beyinden şüphelendi. Kontrol sırasında beynin su aldığını ve oksitlenmeye bağlı olarak bir ayağının kırıldığını tespit etti. Sağ olsun, tamir için yedek parça bile temin etti. Bana sadece küçük bir lehim yapmak kaldı ve tüm sorun çözüldü.
+
+Nokta atışıyla sorunu bulan Yalçın Bey’e ve samimi tutumundan dolayı Akın Bey’e teşekkür ederim. Sadece Mercedes araçlara bakan bu ekibin, işini ne kadar profesyonel yaptığını ve sorunu adım adım göstererek nasıl çözüm ürettiklerini görmek gerçekten takdire şayandı. Kendilerine gönülden teşekkür ederim.`,
+  },
+];
 
 /* ------------------------------------------------------------------ */
 /* Instagram galerisi                                                  */

@@ -28,7 +28,7 @@ export default function About() {
             Mercedes-Benz&apos;e özel, güven veren servis
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
-            AMG Garage, Düzce&apos;de Mercedes-Benz araç sahiplerine özel hizmet veren bir
+            AMG Garaj, Düzce&apos;de Mercedes-Benz araç sahiplerine özel hizmet veren bir
             servistir. Aracınıza gösterilen özeni ve güncel çalışmalarımızı sosyal medya
             hesaplarımızdan takip edebilirsiniz.
           </p>
